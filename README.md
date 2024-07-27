@@ -7,13 +7,13 @@ Fingertips Data Downloader is a Python application that simplifies the process o
 * The application downloads metadata via the `fingertips_py` package, joining data related to area types and indicators; building a map of which indicators are available for each area type.
 * The `tkinter` GUI allows users to navigate available datasets by area type and select specific indicators to download.
 
-By default, one .csv file is downloaded per selected indicator, containing data for all profiles in that area for all available time periods.
+By default, one `.csv` file is downloaded per selected indicator, containing data for all profiles in that area for all available time periods.
 
 **Additional features:**
 
 There are two checkboxes in the bottom-left corner of the GUI that toggle additional functions:
 
-* `Combine Data Before Saving:` Instead of creating individual files for each indicator, combines all of the data frames after the selected indicators have been downloaded.
+* `Combine Data Before Saving:` Instead of creating individual files for each indicator, combines all of the data frames after the selected indicators have been downloaded, resulting in one concatenated `.csv` file.
 
 - `Keep Latest Data Only:` Applies a filter to the data frame for each indicator to select the most recent period.
 
