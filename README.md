@@ -1,6 +1,6 @@
 # Fingertips Data Downloader
 
-Fingertips Data Downloader is a Python application that simplifies the process of downloading and managing public health data from the Fingertips API. The application fetches metadata related to area types and indicators and presents a user-friendly `tkinter` GUI for selecting and downloading relevant datasets.
+Fingertips Data Downloader is a Python application that simplifies the process of downloading and managing public health data from the Fingertips API. The application first fetches metadata related to area types and indicators then presents a user-friendly `tkinter` GUI for selecting and downloading relevant datasets.
 
 ## Core functionality
 
