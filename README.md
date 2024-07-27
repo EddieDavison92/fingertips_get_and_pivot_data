@@ -11,6 +11,8 @@ By default, one .csv file is downloaded per selected indicator, containing data 
 
 **Additional features:**
 
+There are two checkboxes in the bottom-left corner of the GUI that toggle additional functions:
+
 * `Combine Data Before Saving:` Instead of creating individual files for each indicator, combines all of the data frames after the selected indicators have been downloaded.
 
 - `Keep Latest Data Only:` Applies a filter to the data frame for each indicator to select the most recent period.
