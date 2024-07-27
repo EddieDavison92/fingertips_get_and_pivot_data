@@ -69,7 +69,7 @@ The repository contains four python scripts:
 
 `scripts/fetch_initial_data` downloads the required metadata for area types and indicator id's, joins those tables and creates helper files.
 
-`scripts/ui` contains logic for the tkinter components including logic for the interactive elements.
+`scripts/ui` contains functions for the tkinter components including logic for the interactive elements.
 
 ## License
 
