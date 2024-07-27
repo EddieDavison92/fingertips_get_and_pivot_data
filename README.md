@@ -15,6 +15,8 @@ By default, one .csv file is downloaded per selected indicator, containing data 
 
 - `Keep Latest Data Only:` Applies a filter to the data frame for each indicator to select the most recent period.
 
+![image](https://github.com/user-attachments/assets/565af625-8224-4f6b-99ce-f2df68a0d165)
+
 ## **Setup:**
 
 **Create a new virtual environment**
