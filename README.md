@@ -1,67 +1,72 @@
-# Overview
+# Fingertips Data Downloader
 
-This repository contains scripts for downloading and processing health indicator data from the Fingertips API. The scripts are designed to fetch data for specified indicators, process it to retain relevant information, and generate a comprehensive report.
+Fingertips Data Downloader is a Python application that simplifies the process of downloading and managing public health data from the Fingertips API. The application fetches metadata related to area types and indicators and presents a user-friendly `tkinter` GUI for selecting and downloading relevant datasets.
+
+## Core functionality
+
+* The application downloads metadata via the `fingertips_py` package, joining data related to area types and indicators; building a map of which indicators are available for each area type.
+* The `tkinter` GUI allows users to navigate available datasets by area type and select specific indicators to download.
+
+By default, one .csv file is downloaded per selected indicator, containing data for all profiles in that area for all available time periods.
+
+**Additional features:**
+
+* `Combine Data Before Saving:` Instead of creating individual files, stores the data frames in memory and combines them after all indicators have been downloaded.
+
+- `Keep Latest Data Only:` Applies a filter to the data frame for each indicator to select the most recent period.
+
+## **Setup:**
+
+**Create a new virtual environment**
+
+```
+python -m venv venv
+```
+
+**Activate the environment**
+
+```
+venv/scripts/activate
+```
+
+**Ensure the required Python packages are installed:**
+
+```
+pip install -r requirements.txt
+```
+
+This installs packages: `fingertips_py`, `pandas`, `tqdm` and `tk` and their subcomponents.
+
+# Usage
+
+**Run `main.py`:**
+
+```
+python main.py
+```
+
+## Directory Structure
+
+`data/processed/` Contains the downloaded data sets ready for analysis.
+
+`data/helpers/` Contains json and csv files storing the indicator and area type metadata.
+
+`scripts` Contains python files that `main.py` depends on. You do not need to run these.
+
+Directories are created automatically.
 
 ## Scripts
 
-### 1. `download_indicators.py`
+The repository contains four python scripts:
 
-This script downloads health indicator data from the Fingertips API.
+`main.py`, initialises the requried metadata from fingertips and launches the tkinter interface, as well as contains the program main loop.
 
-**Key Features:**
-- Fetches data for a list of specified indicators.
-- Downloads data in batches to manage large data sizes.
-- Saves the fetched data as a CSV file.
+`scripts/data_processing` contains functions used for downloading and cleaning data sets from fingertips.
 
-**Usage:**
+`scripts/fetch_initial_data` downloads the required metadata for area types and indicator id's, joins those tables and creates helper files.
 
-Ensure the required Python packages are installed:
-
-```
-pip install requests pandas
-```
-Run the script:
-```
-python scripts/download_indicators.py
-```
-Details:
-  Indicators: You can modify the list of indicators to fetch by updating the indicators list in the script.
-  Functionality: The script fetches data in batches and saves it to data/raw/fingertips_data.csv.
-
-### 2. `process_data.py`
-
-This script processes the downloaded health indicator data to generate a comprehensive report.
-
-Key Features:
-
--- Filters data to include only relevant area types.
--- Pivots the data to create a structured report.
--- Removes columns with all empty values.
--- Saves the processed data as a CSV file.
-
-Usage:
-
-Ensure the required Python packages are installed:
-
-```
-pip install pandas
-```
-Run the script:
-
-```
-python scripts/process_data.py
-```
-Details:
-    Functionality: The script processes the raw data, filtering and pivoting it to create a final report.
-    Output: The processed data is saved to data/processed/fingertips_data.csv.
-
-### Directory Structure
-  data/raw/: Contains the raw data fetched from the Fingertips API.
-  data/processed/: Contains the processed data ready for analysis.
-
-### Notes
-  Ensure you have the necessary permissions to create directories and save files in the specified paths.
-  Modify the list of indicators in download_indicators.py to tailor the data fetched as per your requirements.
+`scripts/ui` contains logic for the tkinter components including logic for the interactive elements.
 
 ## License
+
   This repository is dual licensed under the Open Government v3 & MIT. All code and outputs are subject to Crown Copyright.
