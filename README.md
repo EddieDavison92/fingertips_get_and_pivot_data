@@ -21,6 +21,8 @@ There are two checkboxes in the bottom-left corner of the GUI that toggle additi
 
 ## **Setup:**
 
+Clone this repository.
+
 **Create a new virtual environment**
 
 ```
