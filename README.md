@@ -19,7 +19,7 @@ There are three checkboxes in the bottom-left corner of the GUI that toggle addi
 
 - `Delete Empty Columns`: Before saving indiviudal or combined dataframes as csv, checks if columns contain all Nulls or NaN values and deletes those columns before saving.
 
-![image](https://github.com/user-attachments/assets/565af625-8224-4f6b-99ce-f2df68a0d165)
+![image](https://github.com/user-attachments/assets/62e17f3c-3b8a-4867-a0e4-588066e12a17)
 
 ## **Setup:**
 
