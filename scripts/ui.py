@@ -14,12 +14,16 @@ class IndicatorSelectionApp:
         area_type_indicator_dict (dict): Dictionary mapping area types to indicator IDs.
         """
         self.root = root
-        self.root.title("Fingertips Data Downloader")
-        self.root.geometry("1000x820")
-        self.root.minsize(500, 400)  # Prevent the window from being resized to less than 500x400
-
         self.area_types = self.get_area_types(area_data_df, area_type_indicator_dict)
         self.indicators = combined_data
+
+        # Calculate dynamic height
+        area_types_count = len(self.area_types)
+        min_height = max(600, 300 + (area_types_count * 20))
+
+        self.root.title("Fingertips Data Downloader")
+        self.root.geometry(f"1000x{min_height}")
+        self.root.minsize(1000, min_height)  # Prevent the window from being resized to less than 1000x(min_height)
 
         self.selected_area_type = tk.StringVar(value="")  # No default selection
 
@@ -41,7 +45,7 @@ class IndicatorSelectionApp:
             area_type_id = str(col)  # Ensure area_type_id is a string
             if area_type_id in area_type_indicator_dict:  # Only include area types with indicators
                 area_types.append(f"{area_data_df[col][1]} (ID: {col})")
-        return area_types
+        return sorted(area_types)
 
     def create_widgets(self):
         """Create the widgets for the Tkinter UI."""
@@ -111,8 +115,12 @@ class IndicatorSelectionApp:
         self.latest_data_checkbox = tk.Checkbutton(self.bottom_frame, text="Keep Latest Data Only", variable=self.latest_data_var)
         self.latest_data_checkbox.pack(side=tk.LEFT)
 
-        self.submit_button = tk.Button(self.bottom_frame, text="Submit", command=self.submit)
-        self.submit_button.pack(side=tk.RIGHT, padx=5)
+        self.delete_empty_columns_var = tk.BooleanVar()
+        self.delete_empty_columns_checkbox = tk.Checkbutton(self.bottom_frame, text="Delete Empty Columns", variable=self.delete_empty_columns_var)
+        self.delete_empty_columns_checkbox.pack(side=tk.LEFT)
+
+        self.download_button = tk.Button(self.bottom_frame, text="Download", command=self.download)
+        self.download_button.pack(side=tk.RIGHT, padx=5)
 
         self.select_all_button = tk.Button(self.bottom_frame, text="Select All", command=self.toggle_select_all)
         self.select_all_button.pack(side=tk.RIGHT)
@@ -172,7 +180,7 @@ class IndicatorSelectionApp:
             var.set(self.all_selected)
         self.select_all_button.config(text="Unselect All" if self.all_selected else "Select All")
 
-    def submit(self):
+    def download(self):
         """Submit the selected indicators and download the data."""
         selected_area = self.selected_area_type.get()
         if not selected_area:
@@ -188,9 +196,10 @@ class IndicatorSelectionApp:
         area_type_id = selected_area.split("(ID: ")[1].strip(")")
         combine = self.combine_data_var.get()
         keep_latest = self.latest_data_var.get()
+        delete_empty_columns = self.delete_empty_columns_var.get()
 
         try:
-            download_and_process_data(selected_indicators, area_type_id, self.indicators, combine, keep_latest)
+            download_and_process_data(selected_indicators, area_type_id, self.indicators, combine, keep_latest, delete_empty_columns)
             messagebox.showinfo("Success", "Data downloaded and processed successfully.")
         except Exception as e:
             messagebox.showerror("Error", f"An error occurred: {e}")

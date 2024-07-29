@@ -14,8 +14,10 @@ def fetch_and_save_data():
     try:
         # Fetch area types for all indicators
         area_data = ftp.get_all_areas_for_all_indicators()
-        area_json_data = {str(indicator_id): [str(area_type_id) for area_type_id in area_types if area_type_id is not None]
-                          for indicator_id, area_types in area_data.items()}
+        area_json_data = {
+            str(indicator_id): [str(area_type_id) for area_type_id in area_types if area_type_id is not None]
+            for indicator_id, area_types in area_data.items()
+        }
 
         # Fetch metadata for all indicators
         metadata = ftp.get_metadata_for_all_indicators()
