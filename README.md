@@ -1,6 +1,6 @@
 # Fingertips Data Downloader
 
-Fingertips Data Downloader is a Python application that simplifies the process of downloading and managing public health data from the Fingertips API. The application first fetches metadata related to area types and indicators then presents a user-friendly `tkinter` GUI for selecting and downloading relevant datasets.
+Fingertips Data Downloader is a Python application that simplifies the process of downloading public health data from the Fingertips API. The application first fetches metadata related to area types and indicators then presents a user-friendly `tkinter` GUI for selecting and downloading relevant datasets.
 
 ## Core functionality
 
@@ -11,13 +11,15 @@ By default, one `.csv` file is downloaded per selected indicator, containing dat
 
 **Additional features:**
 
-There are two checkboxes in the bottom-left corner of the GUI that toggle additional functions:
+There are three checkboxes in the bottom-left corner of the GUI that toggle additional functions:
 
 * `Combine Data Before Saving:` Instead of creating individual files for each indicator, combines all of the data frames after the selected indicators have been downloaded, resulting in one concatenated `.csv` file.
 
 - `Keep Latest Data Only:` Applies a filter to the data frame for each indicator to select the most recent period.
 
-![image](https://github.com/user-attachments/assets/565af625-8224-4f6b-99ce-f2df68a0d165)
+- `Delete Empty Columns`: Before saving indiviudal or combined dataframes as csv, checks if columns contain all Nulls or NaN values and deletes those columns before saving.
+
+![image](https://github.com/user-attachments/assets/62e17f3c-3b8a-4867-a0e4-588066e12a17)
 
 ## **Setup:**
 
