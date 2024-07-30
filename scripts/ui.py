@@ -54,11 +54,12 @@ class IndicatorSelectionApp:
         self.top_frame = tk.Frame(self.root, padx=10, pady=10)
         self.top_frame.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
-        self.left_frame = tk.Frame(self.top_frame, width=150, relief=tk.SOLID, borderwidth=1, padx=10, pady=10)
-        self.left_frame.pack(side=tk.LEFT, fill=tk.Y, padx=5, pady=5)
+        # Adjust the width allocation by setting expand=False for left_frame and expand=True for right_frame
+        self.left_frame = tk.Frame(self.top_frame, relief=tk.SOLID, borderwidth=1, padx=10, pady=10)
+        self.left_frame.pack(side=tk.LEFT, fill=tk.Y, padx=5, pady=5, expand=False)
 
         self.right_frame = tk.Frame(self.top_frame, relief=tk.SOLID, borderwidth=1, padx=10, pady=10)
-        self.right_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True, padx=5, pady=5)
+        self.right_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=5, pady=5)
 
         self.bottom_frame = tk.Frame(self.root, padx=10, pady=10)
         self.bottom_frame.pack(side=tk.BOTTOM, fill=tk.X, padx=5, pady=5)

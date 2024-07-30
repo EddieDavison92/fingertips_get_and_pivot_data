@@ -79,7 +79,6 @@ def download_and_process_data(indicator_ids, area_type_id, indicators, combine=F
 
             if not combine:
                 filename = f"data/processed/{clean_indicator_name(indicator_name).replace(' ', '_')}_{indicator_id}_area_{area_type_id}.csv"
-                os.makedirs('data/processed', exist_ok=True)
                 try:
                     df.to_csv(filename, index=False)
                     print(f"Data saved to {filename}")

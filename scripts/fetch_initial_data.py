@@ -1,7 +1,6 @@
 import fingertips_py as ftp
 import pandas as pd
 import json
-import os
 
 def fetch_and_save_data():
     """
@@ -9,8 +8,6 @@ def fetch_and_save_data():
     
     The data is saved to the 'data/helpers' directory.
     """
-    os.makedirs('data/helpers', exist_ok=True)
-
     try:
         # Fetch area types for all indicators
         area_data = ftp.get_all_areas_for_all_indicators()

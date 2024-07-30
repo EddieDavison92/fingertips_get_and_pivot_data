@@ -1,10 +1,22 @@
 import json
 import pandas as pd
+import os
 from tkinter import Tk
 from scripts.fetch_initial_data import fetch_and_save_data
 from scripts.ui import IndicatorSelectionApp
 
+def create_directories():
+    directories = [
+        'data/helpers',
+        'data/processed'
+    ]
+    for directory in directories:
+        os.makedirs(directory, exist_ok=True)
+
 def main():
+    # Create data/helpers and data/processed directories
+    create_directories()
+
     # Fetch and save initial data from the API
     print("Fetching indicator metadata from fingertips API...")
     try:
